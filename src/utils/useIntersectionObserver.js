@@ -9,9 +9,9 @@ const useIntersectionObserver = (
 
   useEffect(() => {
     // fallback for browsers those do not support IntersectionObserver (i.e. IE)
-    if (!('IntersectionObserver' in window)) {
-      return () => {};
-    }
+    //if (!('IntersectionObserver' in window)) {
+    //  return () => {};
+    //}
 
     const root = rootRef?.current ? rootRef.current : null;
 
@@ -34,9 +34,9 @@ const useIntersectionObserver = (
   }, [rootRef, rootMargin, elementRef, isIntersecting]);
 
   // fallback for browsers those do not support IntersectionObserver (i.e. IE)
-  if (!('IntersectionObserver' in window)) {
-    return true;
-  }
+  //if (!('IntersectionObserver' in window)) {
+  //  return true;
+  //}
 
   return isIntersecting;
 };

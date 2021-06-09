@@ -23,7 +23,7 @@ import useSwipe from '../../utils/useSwipe';
 import useTimer from '../../utils/useTimer';
 import useSlides from '../../utils/useSlides';
 import useKeyboard from '../../utils/useKeyboard';
-import useMediaQuery from '../../utils/useMediaQuery';
+//import useMediaQuery from '../../utils/useMediaQuery';
 import useEventListener from '../../utils/useEventListener';
 import useFixedPosition from '../../utils/useFixedPosition';
 import {
@@ -36,7 +36,7 @@ import { propTypes, defaultProps, getSettings } from './props';
 
 const GalleryCarousel = (props, ref) => {
   /* initialize references */
-  const documentRef = useRef(document);
+  //const documentRef = useRef(document);
   const maximizedBackgroundRef = useRef(null);
   const carouselRef = useRef(null);
   const slidesContainerRef = useRef(null);
@@ -85,7 +85,8 @@ const GalleryCarousel = (props, ref) => {
     setIsPlaying((isPlaying) => !isPlaying);
   };
 
-  const isReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  //const isReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  const isReducedMotion = false;
 
   useLayoutEffect(() => {
     if (isReducedMotion) setIsPlaying(false);
@@ -93,18 +94,18 @@ const GalleryCarousel = (props, ref) => {
 
   /* set up smart pause */
   const [wasPlaying, setWasPlaying] = useState(false);
-  const handleVisibilityChange = useCallback(() => {
-    if (document.visibilityState !== 'visible') {
-      // user switches tab away from the page
-      setWasPlaying(isPlaying);
-      setIsPlaying(false);
-    } else {
+  //const handleVisibilityChange = useCallback(() => {
+  //  if (document.visibilityState !== 'visible') {
+  //    // user switches tab away from the page
+  //    setWasPlaying(isPlaying);
+  //    setIsPlaying(false);
+  //  } else {
       // user switches tab back to the page
-      setIsPlaying(wasPlaying);
-    }
-  }, [isPlaying, setIsPlaying, wasPlaying, setWasPlaying]);
+  //    setIsPlaying(wasPlaying);
+  //  }
+  //}, [isPlaying, setIsPlaying, wasPlaying, setWasPlaying]);
 
-  useEventListener(document, 'visibilitychange', handleVisibilityChange);
+  //useEventListener(document, 'visibilitychange', handleVisibilityChange);
 
   /* handle maximization/minimization and full screen */
   const [isMaximized, setIsMaximized] = useFixedPosition(
@@ -266,7 +267,7 @@ const GalleryCarousel = (props, ref) => {
 
   const rollBackIndexUpdate = () => updateIndex(0, 0, 0);
 
-  useEventListener(window, 'orientationchange', rollBackIndexUpdate);
+  //useEventListener(window, 'orientationchange', rollBackIndexUpdate);
 
   /* handle explicit current index update (e.g. go to slide number 16) */
   const goToIndex = (index) => {
@@ -289,7 +290,7 @@ const GalleryCarousel = (props, ref) => {
   );
 
   /* handle keyboard events */
-  useKeys(documentRef, { Escape: () => setIsMaximized(() => false) });
+  //useKeys(documentRef, { Escape: () => setIsMaximized(() => false) });
 
   useKeyboard(carouselRef);
 

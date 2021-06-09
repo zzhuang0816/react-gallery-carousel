@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import useEventListener from './useEventListener';
-import useMediaQuery from './useMediaQuery';
+//import useMediaQuery from './useMediaQuery';
 
 const useAnchor = (elementRef, isMaximized) => {
   const element = elementRef && elementRef.current;
@@ -16,7 +16,8 @@ const useAnchor = (elementRef, isMaximized) => {
     element.offsetLeft + element.clientWidth >= container.clientWidth;
 
   // get reduced motion setting for determining the need to smooth scrolling for later
-  const isReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  //const isReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  const isReducedMotion = false;
 
   // center the element in the container without smoothness
   const centerElement = useCallback(() => {
@@ -87,7 +88,7 @@ const useAnchor = (elementRef, isMaximized) => {
   useEventListener(elementRef.current, 'click', centerElement);
 
   // center the current element on resize (including orientationchange)
-  useEventListener(window, 'resize', centerElement);
+  //useEventListener(window, 'resize', centerElement);
 };
 
 export default useAnchor;
